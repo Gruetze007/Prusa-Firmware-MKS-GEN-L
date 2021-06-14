@@ -4,7 +4,7 @@
  * @author 3d-gussner
  */
  /** \ingroup eeprom_table */
- 
+
  //! _This is a EEPROM table of currently implemented in Prusa firmware (dynamically generated from doxygen)._
 
 
@@ -37,28 +37,28 @@ typedef struct
 static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEPROM_SHEETS_SIZEOF.");
 #endif
 /** @defgroup eeprom_table EEPROM Table
- *  
- 
+ *
+
   ---------------------------------------------------------------------------------
   EEPROM 8-bit Empty value = 0xFFh 255
-  
+
   EEPROM 16-bit Empty value = 0xFFFFh 65535
-  
+
   _Italic = unused or default_
-  
+
   __Bold = Status__
-  
-  In Default/FactoryReset column the 
-  
+
+  In Default/FactoryReset column the
+
    - __L__		Language
    - __S__ 		Statistics
    - __P__ 		Shipping prep
    - __S/P__	Statistics and Shipping prep
-   
+
   will overwrite existing values to 0 or default.
   A FactoryReset All Data will overwrite the whole EEPROM with ffh and some values will be initialized automatically,
   others need a reset / reboot.
-  
+
   ---------------------------------------------------------------------------------
   How can you use the debug codes?
   - Serial terminal like Putty.
@@ -66,23 +66,23 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
   - _Pronterface_ does __not__ support D-codes
 
   ### !!! D-codes are case sensitive so please don't use upper case A,C or X in the address you want to read !!!
-   
+
   #### Useful tools/links:
   To convert hex to ascii 		https://www.rapidtables.com/convert/number/hex-to-ascii.html
-  
+
   To convert hex to dec 		https://www.rapidtables.com/convert/number/hex-to-decimal.html
-  
+
   Version: 1.0.1
-  
+
   ---------------------------------------------------------------------------------
-  
-  
+
+
 | Address begin		| Bit/Type 	| Name 									| Valid values	| Default/FactoryReset	| Description 										| Gcode/Function| Debug code
 | :--				| :-- 		| :-- 									| :--:			| :--:					| :--												| :--:			| :--:
 | 0x0FFFh 4095		| uchar    	| EEPROM_SILENT 						| 00h 0			| ffh 255				| TMC Stealth mode: __off__ / miniRambo Power mode	| LCD menu		| D3 Ax0fff C1
-| ^ 				| ^ 		| ^										| 01h 1			| ^						| TMC Stealth mode: __on__ / miniRambo Silent mode	| ^				| ^ 
-| ^ 				| ^ 		| ^										| 02h 2			| ^						| miniRambo Auto mode								| ^				| ^ 
-| 0x0FFEh 4094		| uchar    	| EEPROM_LANG 							| 00h 0			| ffh 255		__L__	| English / LANG_ID_PRI								| LCD menu		| D3 Ax0ffe C1 
+| ^ 				| ^ 		| ^										| 01h 1			| ^						| TMC Stealth mode: __on__ / miniRambo Silent mode	| ^				| ^
+| ^ 				| ^ 		| ^										| 02h 2			| ^						| miniRambo Auto mode								| ^				| ^
+| 0x0FFEh 4094		| uchar    	| EEPROM_LANG 							| 00h 0			| ffh 255		__L__	| English / LANG_ID_PRI								| LCD menu		| D3 Ax0ffe C1
 | ^ 				| ^ 		| ^										| 01h 1			| ^						| Other language LANG_ID_SEC						| ^ 			| ^
 | 0x0FFCh 4092		| uint16	| EEPROM_BABYSTEP_X						| ???			| ff ffh 65535			| Babystep for X axis _unsued_						| ??? 			| D3 Ax0ffc C2
 | 0x0FFAh 4090		| uint16	| EEPROM_BABYSTEP_Y						| ???			| ff ffh 65535			| Babystep for Y axis _unsued_						| ^ 			| D3 Ax0ffa C2
@@ -92,7 +92,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | ^ 				| ^ 		| ^										| 01h 1			| ^						| Calibrated										| ^ 			| ^
 | ^ 				| ^ 		| ^										| e6h 230		| ^						| needs Live Z adjustment							| ^ 			| ^
 | ^ 				| ^ 		| ^										| f0h 240		| ^				__P__	| needs Z calibration								| ^ 			| ^
-| ^ 				| ^ 		| ^										| fah 250		| ^						| needs XYZ calibration								| ^ 			| ^ 
+| ^ 				| ^ 		| ^										| fah 250		| ^						| needs XYZ calibration								| ^ 			| ^
 | ^ 				| ^ 		| ^										| 00h 0			| ^						| Unknown											| ^ 			| ^
 | 0x0FF5h 4085		| uint16	| EEPROM_BABYSTEP_Z0					| ???			| ff ffh 65535			| Babystep for Z ???								| ??? 			| D3 Ax0ff5 C2
 | 0x0FF1h 4081		| uint32	| EEPROM_FILAMENTUSED					| ???			| 00 00 00 00h 0 __S/P__| Filament used in meters							| ??? 			| D3 Ax0ff1 C4
@@ -100,11 +100,11 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | 0x0FE5h 4069		| float		| EEPROM_BED_CALIBRATION_CENTER			| ???			| ff ff ff ffh			| ???											 	| ??? 			| D3 Ax0fe5 C8
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | 0x0FDDh 4061		| float		| EEPROM_BED_CALIBRATION_VEC_X			| ???			| ff ff ff ffh			| ???											 	| ??? 			| D3 Ax0fdd C8
-| ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^	
+| ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | 0x0FD5h 4053		| float		| EEPROM_BED_CALIBRATION_VEC_Y			| ???			| ff ff ff ffh			| ???											 	| ??? 			| D3 Ax0fd5 C8
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | 0x0FC5h 4037		| int16		| EEPROM_BED_CALIBRATION_Z_JITTER		| ???			| ff ffh 65535			| ???											 	| ??? 			| D3 Ax0fc5 C16
-| ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^	
+| ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
@@ -126,7 +126,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | 0x0FBCh 4028		| char		| EEPROM_BED_CORRECTION_BACK			| 00h ffh		| 00h 0					| Bed manual correction back						| LCD menu 		| D3 Ax0fbc C1
 | ^					| ^			| ^										| ^				| ^						| At this moment limited to +-100um					| G80 Bxxx 			| ^
 | 0x0FBBh 4027		| bool		| EEPROM_TOSHIBA_FLASH_AIR_COMPATIBLITY	| 00h 0			| ffh 255				| Toshiba Air: __off__								| LCD menu 		| D3 Ax0fbb C1
-| ^					| ^			| ^										| 01h 1			| ^						| Toshiba Air: __on__								| ^ 			| ^	
+| ^					| ^			| ^										| 01h 1			| ^						| Toshiba Air: __on__								| ^ 			| ^
 | 0x0FBAh 4026		| uchar		| EEPROM_PRINT_FLAG						| ???			| ???					| _unsued_											| ??? 			| D3 Ax0fba C1
 | 0x0FB0h 4016		| int16		| EEPROM_PROBE_TEMP_SHIFT				| ???			| ???					| ???												| ??? 			| D3 Ax0fb0 C10
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
@@ -160,7 +160,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | 0x0F88h 3976		| uint8		| EEPROM_UVLO_FAN_SPEED					| ???			| ffh 255				| Power Panic Fan speed								| ^ 			| D3 Ax0f88 C1
 | 0x0F87h 3975		| uint8		| EEPROM_FAN_CHECK_ENABLED				| 00h 0			| ???					| Fan Check __disabled__							| LCD menu		| D3 Ax0f87 C1
 | ^					| ^			| ^										| 01h 1			| ffh 255				| Fan Check __enabled__ 							| ^ 			| ^
-| 0x0F75h 3957		| uint16	| EEPROM_UVLO_MESH_BED_LEVELING			| ???			| ff ffh 65535			| Power Panic Mesh Bed Leveling						| ???			| D3 Ax0f75 C18 
+| 0x0F75h 3957		| uint16	| EEPROM_UVLO_MESH_BED_LEVELING			| ???			| ff ffh 65535			| Power Panic Mesh Bed Leveling						| ???			| D3 Ax0f75 C18
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
@@ -169,7 +169,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
 | ^					| ^			| ^										| ^				| ^						| ^													| ^ 			| ^
-| 0x0F73h 3955		| uint16	| EEPROM_UVLO_Z_MICROSTEPS				| ???			| ff ffh 65535			| Power Panic Z microsteps							| ???			| D3 Ax0f73 C2 
+| 0x0F73h 3955		| uint16	| EEPROM_UVLO_Z_MICROSTEPS				| ???			| ff ffh 65535			| Power Panic Z microsteps							| ???			| D3 Ax0f73 C2
 | 0x0F72h 3954		| uint8		| EEPROM_UVLO_E_ABS						| ???			| ffh 255				| Power Panic ??? position							| ???			| D3 Ax0f72 C1
 | 0x0F6Eh 3950		| foat		| EEPROM_UVLO_CURRENT_POSITION_E		| ???			| ff ff ff ffh			| Power Panic E position							| ???			| D3 Ax0f6e C4
 | 0x0F6Dh 3949		| ???		| _EEPROM_FREE_NR2_						| ???			| ffh 255				| _Free EEPROM space_								| _free space_	| D3 Ax0f6d C1
@@ -309,37 +309,37 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | ^					| ^			| ^										| 00h 0			| ^						| Check mode for gcode is: __none__ _unused atm_	| ^				| ^
 | 0x0D49 3401		| uint16	| EEPROM_SHEETS_BASE					| ???			| ffh 255				| ???												| LCD menu		| D3 Ax0d49 C89
 | 0x0D49 3401		| char		| _1st Sheet block_						| 536d6f6f746831| ffffffffffffff		| 1st sheet - Name: 	_Smooth1_					| ^				| D3 Ax0d49 C7
-| 0x0D50 3408		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 1st sheet - Z offset 								| ^				| D3 Ax0d50 C2	
-| 0x0D52 3410		| uint8		| ^										| 00h 0			| ffh 255				| 1st sheet - bed temp 								| ^				| D3 Ax0d52 C1	
-| 0x0D53 3411		| uint8		| ^										| 00h 0			| ffh 255				| 1st sheet - PINDA temp 							| ^				| D3 Ax0d53 C1	
+| 0x0D50 3408		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 1st sheet - Z offset 								| ^				| D3 Ax0d50 C2
+| 0x0D52 3410		| uint8		| ^										| 00h 0			| ffh 255				| 1st sheet - bed temp 								| ^				| D3 Ax0d52 C1
+| 0x0D53 3411		| uint8		| ^										| 00h 0			| ffh 255				| 1st sheet - PINDA temp 							| ^				| D3 Ax0d53 C1
 | 0x0D54 3412		| char		| _2nd Sheet block_						| 536d6f6f746832| ffffffffffffff		| 2nd sheet - Name: 	_Smooth2_					| ^				| D3 Ax0d54 C7
-| 0x0D5B 3419		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 2nd sheet - Z offset 								| ^				| D3 Ax0d5b C2	
-| 0x0D5D 3421		| uint8		| ^										| 00h 0			| ffh 255				| 2nd sheet - bed temp 								| ^				| D3 Ax0d5d C1	
-| 0x0D5E 3422		| uint8		| ^										| 00h 0			| ffh 255				| 2nd sheet - PINDA temp 							| ^				| D3 Ax0d5e C1	
+| 0x0D5B 3419		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 2nd sheet - Z offset 								| ^				| D3 Ax0d5b C2
+| 0x0D5D 3421		| uint8		| ^										| 00h 0			| ffh 255				| 2nd sheet - bed temp 								| ^				| D3 Ax0d5d C1
+| 0x0D5E 3422		| uint8		| ^										| 00h 0			| ffh 255				| 2nd sheet - PINDA temp 							| ^				| D3 Ax0d5e C1
 | 0x0D5F 3423		| char		| _3rd Sheet block_						| 54657874757231| ffffffffffffff		| 3rd sheet - Name: 	_Textur1_					| ^				| D3 Ax0d5f C7
-| 0x0D66 3430		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 3rd sheet - Z offset 								| ^				| D3 Ax0d66 C2	
-| 0x0D68 3432		| uint8		| ^										| 00h 0			| ffh 255				| 3rd sheet - bed temp 								| ^				| D3 Ax0d68 C1	
-| 0x0D69 3433		| uint8		| ^										| 00h 0			| ffh 255				| 3rd sheet - PINDA temp 							| ^				| D3 Ax0d69 C1	
+| 0x0D66 3430		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 3rd sheet - Z offset 								| ^				| D3 Ax0d66 C2
+| 0x0D68 3432		| uint8		| ^										| 00h 0			| ffh 255				| 3rd sheet - bed temp 								| ^				| D3 Ax0d68 C1
+| 0x0D69 3433		| uint8		| ^										| 00h 0			| ffh 255				| 3rd sheet - PINDA temp 							| ^				| D3 Ax0d69 C1
 | 0x0D6A 3434		| char		| _4th Sheet block_						| 54657874757232| ffffffffffffff		| 4th sheet - Name: 	_Textur2_					| ^				| D3 Ax0d6a C7
-| 0x0D71 3441		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 4th sheet - Z offset 								| ^				| D3 Ax0d71 C2	
-| 0x0D73 3443		| uint8		| ^										| 00h 0			| ffh 255				| 4th sheet - bed temp 								| ^				| D3 Ax0d73 C1	
-| 0x0D74 3444		| uint8		| ^										| 00h 0			| ffh 255				| 4th sheet - PINDA temp 							| ^				| D3 Ax0d74 C1	
+| 0x0D71 3441		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 4th sheet - Z offset 								| ^				| D3 Ax0d71 C2
+| 0x0D73 3443		| uint8		| ^										| 00h 0			| ffh 255				| 4th sheet - bed temp 								| ^				| D3 Ax0d73 C1
+| 0x0D74 3444		| uint8		| ^										| 00h 0			| ffh 255				| 4th sheet - PINDA temp 							| ^				| D3 Ax0d74 C1
 | 0x0D75 3445		| char		| _5th Sheet block_						| 437573746f6d31| ffffffffffffff		| 5th sheet - Name: 	_Custom1_					| ^				| D3 Ax0d75 C7
-| 0x0D7C 3452		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 5th sheet - Z offset 								| ^				| D3 Ax0d7c C2	
-| 0x0D7E 3454		| uint8		| ^										| 00h 0			| ffh 255				| 5th sheet - bed temp 								| ^				| D3 Ax0d7e C1	
-| 0x0D7F 3455		| uint8		| ^										| 00h 0			| ffh 255				| 5th sheet - PINDA temp 							| ^				| D3 Ax0d7f C1	
+| 0x0D7C 3452		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 5th sheet - Z offset 								| ^				| D3 Ax0d7c C2
+| 0x0D7E 3454		| uint8		| ^										| 00h 0			| ffh 255				| 5th sheet - bed temp 								| ^				| D3 Ax0d7e C1
+| 0x0D7F 3455		| uint8		| ^										| 00h 0			| ffh 255				| 5th sheet - PINDA temp 							| ^				| D3 Ax0d7f C1
 | 0x0D80 3456		| char		| _6th Sheet block_						| 437573746f6d32| ffffffffffffff		| 6th sheet - Name: 	_Custom2_					| ^				| D3 Ax0d80 C7
-| 0x0D87 3463		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 6th sheet - Z offset 								| ^				| D3 Ax0d87 C2	
-| 0x0D89 3465		| uint8		| ^										| 00h 0			| ffh 255				| 6th sheet - bed temp 								| ^				| D3 Ax0d89 C1	
-| 0x0D8A 3466		| uint8		| ^										| 00h 0			| ffh 255				| 6th sheet - PINDA temp 							| ^				| D3 Ax0d8a C1	
+| 0x0D87 3463		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 6th sheet - Z offset 								| ^				| D3 Ax0d87 C2
+| 0x0D89 3465		| uint8		| ^										| 00h 0			| ffh 255				| 6th sheet - bed temp 								| ^				| D3 Ax0d89 C1
+| 0x0D8A 3466		| uint8		| ^										| 00h 0			| ffh 255				| 6th sheet - PINDA temp 							| ^				| D3 Ax0d8a C1
 | 0x0D8B 3467		| char		| _7th Sheet block_						| 437573746f6d33| ffffffffffffff		| 7th sheet - Name: 	_Custom3_					| ^				| D3 Ax0d8b C7
-| 0x0D92 3474		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 7th sheet - Z offset 								| ^				| D3 Ax0d92 C2	
-| 0x0D94 3476		| uint8		| ^										| 00h 0			| ffh 255				| 7th sheet - bed temp 								| ^				| D3 Ax0d94 C1	
-| 0x0D95 3477		| uint8		| ^										| 00h 0			| ffh 255				| 7th sheet - PINDA temp 							| ^				| D3 Ax0d95 C1	
+| 0x0D92 3474		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 7th sheet - Z offset 								| ^				| D3 Ax0d92 C2
+| 0x0D94 3476		| uint8		| ^										| 00h 0			| ffh 255				| 7th sheet - bed temp 								| ^				| D3 Ax0d94 C1
+| 0x0D95 3477		| uint8		| ^										| 00h 0			| ffh 255				| 7th sheet - PINDA temp 							| ^				| D3 Ax0d95 C1
 | 0x0D96 3478		| char		| _8th Sheet block_						| 437573746f6d34| ffffffffffffff		| 8th sheet - Name: 	_Custom4_					| ^				| D3 Ax0d96 C7
-| 0x0D9D 3485		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 8th sheet - Z offset 								| ^				| D3 Ax0d9d C2	
-| 0x0D9F 3487		| uint8		| ^										| 00h 0			| ffh 255				| 8th sheet - bed temp 								| ^				| D3 Ax0d9f C1	
-| 0x0DA0 3488		| uint8		| ^										| 00h 0			| ffh 255				| 8th sheet - PINDA temp 							| ^				| D3 Ax0da0 C1	
+| 0x0D9D 3485		| uint16	| ^										| 00 00h 0		| ff ffh 65535			| 8th sheet - Z offset 								| ^				| D3 Ax0d9d C2
+| 0x0D9F 3487		| uint8		| ^										| 00h 0			| ffh 255				| 8th sheet - bed temp 								| ^				| D3 Ax0d9f C1
+| 0x0DA0 3488		| uint8		| ^										| 00h 0			| ffh 255				| 8th sheet - PINDA temp 							| ^				| D3 Ax0da0 C1
 | 0x0DA1 3489		| uint8		| ???									| 00h 0			| ffh 255				| ???												| ???			| D3 Ax0da1 C1
 | 0x0D48 3400		| uint8		| EEPROM_FSENSOR_PCB					| ???			| ffh 255				| Filament Sensor type old vs new					| ???			| D3 Ax0d48 C1
 | ^					| ^			| ^										| ???			| ^						| Filament Sensor type ???							| ^				| ^
@@ -359,7 +359,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 | 0x0D30 3376		| uint16	| EEPROM_BACKLIGHT_TIMEOUT				| 01 00 - ff ff | 0a 00h 65535			| LCD backlight timeout: __10__ seconds				| LCD menu		| D3 Ax0d30 C2
 | 0x0D2C 3372		| float		| EEPROM_UVLO_LA_K						| ???			| ff ff ff ffh			| Power panic saved Linear Advanced K value			| ???			| D3 Ax0d2c C4
 
-  
+
 | Address begin		| Bit/Type 	| Name 									| Valid values	| Default/FactoryReset	| Description 										| Gcode/Function| Debug code
 | :--:				| :--: 		| :--: 									| :--:			| :--:					| :--:												| :--:			| :--:
 | 0x0012 18			| uint16	| EEPROM_FIRMWARE_VERSION_END			| ???			| ff ffh 65535			| ???												| ???			| D3 Ax0012 C2
@@ -407,19 +407,19 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 #define EEPROM_BED_CORRECTION_REAR  (EEPROM_BED_CORRECTION_FRONT-1)
 #define EEPROM_TOSHIBA_FLASH_AIR_COMPATIBLITY (EEPROM_BED_CORRECTION_REAR-1)
 #define EEPROM_PRINT_FLAG (EEPROM_TOSHIBA_FLASH_AIR_COMPATIBLITY-1)
-#define EEPROM_PROBE_TEMP_SHIFT (EEPROM_PRINT_FLAG - 2*5) //5 x int for storing pinda probe temp shift relative to 50 C; unit: motor steps 
+#define EEPROM_PROBE_TEMP_SHIFT (EEPROM_PRINT_FLAG - 2*5) //5 x int for storing pinda probe temp shift relative to 50 C; unit: motor steps
 #define EEPROM_TEMP_CAL_ACTIVE (EEPROM_PROBE_TEMP_SHIFT - 1)
 #define EEPROM_BOWDEN_LENGTH (EEPROM_TEMP_CAL_ACTIVE - 2*4) //4 x int for bowden lengths for multimaterial
 #define EEPROM_CALIBRATION_STATUS_PINDA (EEPROM_BOWDEN_LENGTH - 1) //0 - not calibrated; 1 - calibrated
 #define EEPROM_UVLO						(EEPROM_CALIBRATION_STATUS_PINDA - 1) //1 - uvlo during print
 #define EEPROM_UVLO_CURRENT_POSITION	(EEPROM_UVLO-2*4) // 2 x float for current_position in X and Y axes
 #define EEPROM_FILENAME (EEPROM_UVLO_CURRENT_POSITION - 8) //8chars to store filename without extension
-#define EEPROM_FILE_POSITION (EEPROM_FILENAME - 4) //32 bit for uint32_t file position 
+#define EEPROM_FILE_POSITION (EEPROM_FILENAME - 4) //32 bit for uint32_t file position
 #define EEPROM_UVLO_CURRENT_POSITION_Z	(EEPROM_FILE_POSITION - 4) //float for current position in Z
 #define EEPROM_UVLO_UNUSED_001		(EEPROM_UVLO_CURRENT_POSITION_Z - 1) // uint8_t (unused)
 #define EEPROM_UVLO_TARGET_BED			(EEPROM_UVLO_UNUSED_001 - 1)
 #define EEPROM_UVLO_FEEDRATE			(EEPROM_UVLO_TARGET_BED - 2) //uint16_t
-#define EEPROM_UVLO_FAN_SPEED			(EEPROM_UVLO_FEEDRATE - 1) 
+#define EEPROM_UVLO_FAN_SPEED			(EEPROM_UVLO_FEEDRATE - 1)
 #define EEPROM_FAN_CHECK_ENABLED		(EEPROM_UVLO_FAN_SPEED - 1)
 #define EEPROM_UVLO_MESH_BED_LEVELING     (EEPROM_FAN_CHECK_ENABLED - 9*2)
 
@@ -431,12 +431,12 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 #define EEPROM_FREE_NR3         (EEPROM_FREE_NR2 - 1)							// FREE EEPROM SPACE
 #define EEPROM_FREE_NR4         (EEPROM_FREE_NR3 - 1)							// FREE EEPROM SPACE
 #define EEPROM_FREE_NR5         (EEPROM_FREE_NR4 - 1)							// FREE EEPROM SPACE
-// Crash detection mode EEPROM setting 
-#define EEPROM_CRASH_DET         (EEPROM_FREE_NR5 - 1)       				    // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-12) 
+// Crash detection mode EEPROM setting
+#define EEPROM_CRASH_DET         (EEPROM_FREE_NR5 - 1)       				    // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-12)
 // Crash detection counter Y (last print)
 #define EEPROM_CRASH_COUNT_Y       (EEPROM_CRASH_DET - 1)                       // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-15)
-// Filament sensor on/off EEPROM setting 
-#define EEPROM_FSENSOR           (EEPROM_CRASH_COUNT_Y - 1)                     // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-14) 
+// Filament sensor on/off EEPROM setting
+#define EEPROM_FSENSOR           (EEPROM_CRASH_COUNT_Y - 1)                     // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-14)
 // Crash detection counter X (last print)
 #define EEPROM_CRASH_COUNT_X       (EEPROM_FSENSOR - 1)                         // uint8 (orig EEPROM_UVLO_MESH_BED_LEVELING-15)
 // Filament runout/error coutner (last print)
@@ -466,7 +466,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 #define EEPROM_POWER_COUNT_TOT       (EEPROM_FERROR_COUNT_TOT - 2)             // uint16
 
 ////////////////////////////////////////
-// TMC2130 Accurate sensorless homing 
+// TMC2130 Accurate sensorless homing
 
 // X-axis home origin (stepper phase in microsteps, 0..63 for 16ustep resolution)
 #define EEPROM_TMC2130_HOME_X_ORIGIN           (EEPROM_POWER_COUNT_TOT - 1)                    // uint8
@@ -531,7 +531,7 @@ static_assert(sizeof(Sheets) == EEPROM_SHEETS_SIZEOF, "Sizeof(Sheets) is not EEP
 #define EEPROM_UVLO_MESH_BED_LEVELING_FULL     (EEPROM_MMU_CUTTER_ENABLED - 12*12*2) //allow 12 calibration points for future expansion
 
 #define EEPROM_MBL_TYPE	(EEPROM_UVLO_MESH_BED_LEVELING_FULL-1) //uint8_t for mesh bed leveling precision
-#define EEPROM_MBL_MAGNET_ELIMINATION (EEPROM_MBL_TYPE -1)  
+#define EEPROM_MBL_MAGNET_ELIMINATION (EEPROM_MBL_TYPE -1)
 #define EEPROM_MBL_POINTS_NR (EEPROM_MBL_MAGNET_ELIMINATION -1) //uint8_t number of points in one exis for mesh bed leveling
 #define EEPROM_MBL_PROBE_NR (EEPROM_MBL_POINTS_NR-1) //number of measurements for each point
 
@@ -581,7 +581,8 @@ static Sheets * const EEPROM_Sheets_base = (Sheets*)(EEPROM_SHEETS_BASE);
 #ifdef __cplusplus
 #include "ConfigurationStore.h"
 static_assert(EEPROM_FIRMWARE_VERSION_END < 20, "Firmware version EEPROM address conflicts with EEPROM_M500_base");
-static constexpr M500_conf * const EEPROM_M500_base = reinterpret_cast<M500_conf*>(20); //offset for storing settings using M500
+// static constexpr M500_conf * const EEPROM_M500_base = reinterpret_cast<M500_conf*>(20); //offset for storing settings using M500
+static M500_conf * const EEPROM_M500_base = reinterpret_cast<M500_conf*>(20); //offset for storing settings using M500
 static_assert(((sizeof(M500_conf) + 20) < EEPROM_LAST_ITEM), "M500_conf address space conflicts with previous items.");
 #endif
 
