@@ -22,7 +22,7 @@
 #define CUSTOM_MENDEL_NAME "Prusa i3 MK3S"
 
 // Electronics
-#define MOTHERBOARD BOARD_EINSY_1_0a
+#define MOTHERBOARD BOARD_TRIGORILLA
 #define STEEL_SHEET
 #define HAS_SECOND_SERIAL_PORT
 
@@ -124,16 +124,16 @@
 #define CRASHDET_COUNTER_MAX 3
 
 // New XYZ calibration
-#define NEW_XYZCAL
+// #define NEW_XYZCAL
 
 // Watchdog support
 #define WATCHDOG
 
 // Power panic
-#define UVLO_SUPPORT
+// #define UVLO_SUPPORT
 
 // Fan check
-#define FANCHECK
+// #define FANCHECK
 
 // Safety timer
 #define SAFETYTIMER
@@ -142,7 +142,7 @@
 
 // Filament sensor
 #define FILAMENT_SENSOR
-#define IR_SENSOR
+// #define IR_SENSOR
 
 // Backlash -
 //#define BACKLASH_X
